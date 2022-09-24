@@ -19,7 +19,7 @@
         <p>[[question.question]]</p>
 
         <div class="form-check" v-for="answer in question.answers">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+          <input @change = "checkAnswer($event,question.uid)":value = "answer.answer"class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
           <label class="form-check-label" for="flexRadioDefault1">
             [[answer.answer]]
           </label>
@@ -56,11 +56,31 @@
                 console.log(result)
                 _this.questions = result.data
               })
-          }
+          },
+          checkAnswer(event,uid){
+
+            this.questions.map(question =>{
+              console.log(question.answers)
+              answers = question.answers)
+              for (var i=0 ; i< answers.length;i++){
+                if (answer[i].answer == event.target.value){
+                  if(answer[i].is_correct){
+                    console.log('your answer is correct')
+                    alert('Correct Answer')
+                  }else{
+                    console.log('your answer is incorrect')
+                    alert('Sorry Incorrect Answer')
+                  }
+                }
+              }
+            })
+
+            console.log(event.target.value,uid)
+          
         },
         created() {
           this.getQuestions()
-          
+            
         },
       });
       
